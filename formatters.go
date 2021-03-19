@@ -272,22 +272,22 @@ func PlusOne(val int) int {
 }
 
 //Add ...
-func Add(a, b int) int {
+func Add(a, b int64) int64 {
 	return a + b
 }
 
 //Subtract ...
-func Subtract(a, b int) int {
+func Subtract(a, b int64) int64 {
 	return a - b
 }
 
 //Multiply ...
-func Multiply(a, b int) int {
+func Multiply(a, b int64) int64 {
 	return a * b
 }
 
 //Divide ...
-func Divide(a, b int) float64 {
+func Divide(a, b int64) float64 {
 	return float64(a) / float64(b)
 }
 
