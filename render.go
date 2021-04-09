@@ -506,6 +506,7 @@ func GetFuncMap() map[string]interface{} {
 		"format2":                      Format2,                      //
 		"formatPhone":                  FormatPhone,                  //
 		"plusOne":                      PlusOne,                      //
+		"plusOne64":                    PlusOne64,                    //
 		"add":                          Add,                          //Add two numbers
 		"subtract":                     Subtract,                     //Subtract two numbers
 		"multiply":                     Multiply,

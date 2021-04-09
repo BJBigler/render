@@ -271,6 +271,11 @@ func PlusOne(val int) int {
 	return val + 1
 }
 
+//PlusOne64 adds one to the value provided
+func PlusOne64(val int64) int64 {
+	return val + 1
+}
+
 //Add ...
 func Add(a, b int64) int64 {
 	return a + b
