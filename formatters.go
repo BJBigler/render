@@ -138,6 +138,16 @@ func WhenRevisedDisplay(val time.Time) string {
 	return ", revised " + DateFormatDisplay(val)
 }
 
+//RenderSnippet utilizes GO's templating engine
+//to render a template fragment into a string using
+//*models*'s data.
+func RenderFragment(tmpl string, model interface{}) (template.HTML, error) {
+
+	result, err := ToStringFromString(tmpl, model)
+
+	return template.HTML(result), err
+}
+
 //IssueDateFormatDisplay ...
 func IssueDateFormatDisplay(val time.Time) string {
 	if val.IsZero() {

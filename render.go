@@ -485,6 +485,7 @@ func GetFuncMap() map[string]interface{} {
 		"dateYear":                     DateYear,
 		"dateTimeFormal":               DateTimeFormal,
 		"shortDateTime":                ShortDateTime,
+		"renderFragment":               RenderFragment,
 		"decimalDisplay0":              DecimalDisplay0, //Precision 6
 		"decimalDisplay2":              DecimalDisplay2, //Precision 6
 		"decimalDisplay3":              DecimalDisplay3, //Precision 6
