@@ -472,6 +472,10 @@ func ReportReload(w http.ResponseWriter) {
 	JSONToBrowser(w, []byte(jsonOut))
 }
 
+func FakeFunctionToGetChangeToCommit() {
+	return
+}
+
 //GetFuncMap provides a set of utility functions to help format data on an HTML output page.
 func GetFuncMap() map[string]interface{} {
 	return template.FuncMap{
