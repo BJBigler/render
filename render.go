@@ -127,7 +127,7 @@ func RedirectTo(w http.ResponseWriter, redirectURL *url.URL) {
 }
 
 //ToBrowserNoMaster prints out template with no master.
-func ToBrowserNoMaster(w http.ResponseWriter, instanceTemplate string, model interface{}) {
+func ToBrowserNoMaster(w http.ResponseWriter, instanceTemplate string, model interface{}) error {
 
 	funcMap := GetFuncMap()
 
@@ -137,8 +137,10 @@ func ToBrowserNoMaster(w http.ResponseWriter, instanceTemplate string, model int
 	t := template.Must(template.New(templateName).Funcs(funcMap).ParseFiles(instanceTemplate))
 
 	if err := t.Execute(w, model); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return err
 	}
+
+	return nil
 }
 
 //ToBrowserNoMasterNew ...
