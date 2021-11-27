@@ -424,12 +424,12 @@ func Int64ToTime(v int64) string {
 
 //ArrayToQS takes a key and string array
 //and produces &key=v&key=v, etc
-func ArrayToQS(key string, values []string) template.HTML {
+func ArrayToQS(key string, values []string) template.URL {
 
 	sb := strings.Builder{}
 	for _, v := range values {
 		sb.WriteString(fmt.Sprintf("&%s=%s", key, v))
 	}
 
-	return template.HTML(sb.String())
+	return template.URL(sb.String())
 }
