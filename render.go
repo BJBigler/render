@@ -535,6 +535,7 @@ func GetFuncMap() map[string]interface{} {
 		"int64ToTime":                  Int64ToTime, //Converts, e.g., 835 to 8:35
 		"academicYearView":             utils.AcademicYearView,
 		"prepPhone":                    PrepPhone, //Preps a phone number for use in an HTML tel tag
+		"arrayToQS":                    ArrayToQS,
 		"safe": func(s string) template.HTML {
 			return template.HTML(s)
 		},
