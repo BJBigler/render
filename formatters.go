@@ -435,16 +435,16 @@ func ArrayToQS(key string, values []string) template.URL {
 }
 
 //PrecisionFormatter formats value to precision decimal places
-func PrecisionFormatter(value, precision int64) string {
+func PrecisionFormatter(value, precision, displayDecimals int64) string {
 	amount := float64(value) / float64(intPow(10, precision))
-	formatter := fmt.Sprintf("%%.%df", precision)
+	formatter := fmt.Sprintf("%%.%df", displayDecimals)
 	return fmt.Sprintf(formatter, amount)
 
 }
 
-func PrecisionFormatterFloat64(value float64, precision int64) string {
+func PrecisionFormatterFloat64(value float64, precision, displayDecimals int64) string {
 	amount := value / float64(intPow(10, precision))
-	formatter := fmt.Sprintf("%%.%df", precision)
+	formatter := fmt.Sprintf("%%.%df", displayDecimals)
 	return fmt.Sprintf(formatter, amount)
 }
 
