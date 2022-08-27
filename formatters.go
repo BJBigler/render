@@ -442,6 +442,12 @@ func PrecisionFormatter(value, precision int64) string {
 
 }
 
+func PrecisionFormatterFloat64(value float64, precision int64) string {
+	amount := value / float64(intPow(10, precision))
+	formatter := fmt.Sprintf("%%.%df", precision)
+	return fmt.Sprintf(formatter, amount)
+}
+
 func intPow(n, m int64) int64 {
 	if m == 0 {
 		return 1
