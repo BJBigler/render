@@ -433,3 +433,22 @@ func ArrayToQS(key string, values []string) template.URL {
 
 	return template.URL(sb.String())
 }
+
+//PrecisionFormatter formats value to precision decimal places
+func PrecisionFormatter(value, precision int64) string {
+	amount := float64(value) / float64(intPow(10, precision))
+	formatter := fmt.Sprintf("%%.%df", precision)
+	return fmt.Sprintf(formatter, amount)
+
+}
+
+func intPow(n, m int64) int64 {
+	if m == 0 {
+		return 1
+	}
+	result := n
+	for i := int64(2); i <= m; i++ {
+		result *= n
+	}
+	return result
+}

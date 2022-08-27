@@ -536,6 +536,7 @@ func GetFuncMap() map[string]interface{} {
 		"academicYearView":             utils.AcademicYearView,
 		"prepPhone":                    PrepPhone, //Preps a phone number for use in an HTML tel tag
 		"arrayToQS":                    ArrayToQS,
+		"precisionFormatter":           PrecisionFormatter,
 		"safe": func(s string) template.HTML {
 			return template.HTML(s)
 		},
