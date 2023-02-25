@@ -90,11 +90,11 @@ func DisplayDate(val time.Time) string {
 func DisplayMorningAfternoonEvening(val time.Time) string {
 	hour := val.Hour()
 
-	if hour <= 12 {
+	if hour < 12 {
 		return "Morning"
 	}
 
-	if hour <= 18 {
+	if hour < 18 {
 		return "Afternoon"
 	}
 
