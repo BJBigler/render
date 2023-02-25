@@ -83,6 +83,24 @@ func DisplayDate(val time.Time) string {
 	return ""
 }
 
+//DisplayMorningAfternoonEvening returns
+//"Morning" when time.Hour is less than 12;
+//"Afternoon" when time.Hour is less than 18 (before 6PM)
+//"Evening" for all other times
+func DisplayMorningAfternoonEvening(val time.Time) string {
+	hour := val.Hour()
+
+	if hour <= 12 {
+		return "Morning"
+	}
+
+	if hour <= 18 {
+		return "Afternoon"
+	}
+
+	return "Evening"
+}
+
 //DisplayDateTime (01/02/2006 03:04PM)
 func DisplayDateTime(val time.Time) string {
 	minTime := time.Time{}

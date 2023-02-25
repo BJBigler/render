@@ -477,67 +477,68 @@ func ReportReload(w http.ResponseWriter) {
 //GetFuncMap provides a set of utility functions to help format data on an HTML output page.
 func GetFuncMap() map[string]interface{} {
 	return template.FuncMap{
-		"formatDate":                   FormatDate,
-		"formatDateUTC":                FormatDateUTC,
-		"displayDate":                  DisplayDate,
-		"displayDateTime":              DisplayDateTime,
-		"dateFormatDisplay":            DateFormatDisplay,
-		"dateMonth":                    DateMonth,
-		"dateDay":                      DateDay,
-		"dateYear":                     DateYear,
-		"dateTimeFormal":               DateTimeFormal,
-		"shortDateTime":                ShortDateTime,
-		"renderFragment":               RenderFragment,
-		"decimalDisplay0":              DecimalDisplay0, //Precision 6
-		"decimalDisplay2":              DecimalDisplay2, //Precision 6
-		"decimalDisplay3":              DecimalDisplay3, //Precision 6
-		"intDisplay0":                  IntDisplay0,
-		"int64Display0":                Int64Display0,                //Precision 4
-		"int64Display2":                Int64Display2,                //Precision 4
-		"int64Display3":                Int64Display3,                //Precision 4
-		"float64Display0":              Float64Display0,              //Precision 4
-		"float64Display2":              Float64Display2,              //Precision 4
-		"float64Display3":              Float64Display3,              //Precision 4
-		"int64Display2FromPrecision10": Int64Display2FromPrecision10, //Precision 10
-		"fullDateTimeET":               FullDateTimeET,               //
-		"whenCompletedDisplay":         WhenCompletedDisplay,         //
-		"whenRevisedDisplay":           WhenRevisedDisplay,           //
-		"issueDateFormatDisplay":       IssueDateFormatDisplay,       //
-		"marshal":                      Marshal,                      //
-		"urlSafeKey":                   URLSafeKey,                   //
-		"keyToStringID":                KeyToStringID,                //
-		"format2":                      Format2,                      //
-		"formatPhone":                  FormatPhone,                  //
-		"plusOne":                      PlusOne,                      //
-		"plusOne64":                    PlusOne64,                    //
-		"add":                          Add,                          //Add two numbers
-		"subtract":                     Subtract,                     //Subtract two numbers
-		"multiply":                     Multiply,
-		"divide":                       Divide,
-		"plusOneZeroPad":               PlusOneZeroPad, //
-		"zeroPad":                      ZeroPad,        //
-		"zeroPad64":                    ZeroPad64,      //
-		"dashes":                       Dashes,         //
-		"fullDisplayDate":              FullDisplayDate,
-		"fullDateFormat":               FullDateFormat, //
-		"timeFormatAmPm":               TimeFormatAmPm,
-		"intlDateDisplay":              IntlDateDisplay, //
-		"firstInitial":                 FirstInitial,    //
-		"calcTabIndex":                 CalcTabIndex,    //
-		"isToday":                      IsToday,         //
-		"newLineToBR":                  NewLineToBR,     //
-		"timeFormat":                   TimeFormat,      //
-		"dict":                         DictHelper,      //
-		"htmlEscape":                   HTMLEscape,      //
-		"toUppercase":                  ToUppercase,     //
-		"toLowercase":                  ToLowercase,     //
-		"toTitleCase":                  ToTitleCase,
-		"int64ToTime":                  Int64ToTime, //Converts, e.g., 835 to 8:35
-		"academicYearView":             utils.AcademicYearView,
-		"prepPhone":                    PrepPhone, //Preps a phone number for use in an HTML tel tag
-		"arrayToQS":                    ArrayToQS,
-		"precisionFormatter":           PrecisionFormatter,
-		"precisionFormatterFloat64":    PrecisionFormatterFloat64,
+		"formatDate":                     FormatDate,
+		"formatDateUTC":                  FormatDateUTC,
+		"displayDate":                    DisplayDate,
+		"displayMorningAfternoonEvening": DisplayMorningAfternoonEvening, //
+		"displayDateTime":                DisplayDateTime,
+		"dateFormatDisplay":              DateFormatDisplay,
+		"dateMonth":                      DateMonth,
+		"dateDay":                        DateDay,
+		"dateYear":                       DateYear,
+		"dateTimeFormal":                 DateTimeFormal,
+		"shortDateTime":                  ShortDateTime,
+		"renderFragment":                 RenderFragment,
+		"decimalDisplay0":                DecimalDisplay0, //Precision 6
+		"decimalDisplay2":                DecimalDisplay2, //Precision 6
+		"decimalDisplay3":                DecimalDisplay3, //Precision 6
+		"intDisplay0":                    IntDisplay0,
+		"int64Display0":                  Int64Display0,                //Precision 4
+		"int64Display2":                  Int64Display2,                //Precision 4
+		"int64Display3":                  Int64Display3,                //Precision 4
+		"float64Display0":                Float64Display0,              //Precision 4
+		"float64Display2":                Float64Display2,              //Precision 4
+		"float64Display3":                Float64Display3,              //Precision 4
+		"int64Display2FromPrecision10":   Int64Display2FromPrecision10, //Precision 10
+		"fullDateTimeET":                 FullDateTimeET,               //
+		"whenCompletedDisplay":           WhenCompletedDisplay,         //
+		"whenRevisedDisplay":             WhenRevisedDisplay,           //
+		"issueDateFormatDisplay":         IssueDateFormatDisplay,       //
+		"marshal":                        Marshal,                      //
+		"urlSafeKey":                     URLSafeKey,                   //
+		"keyToStringID":                  KeyToStringID,                //
+		"format2":                        Format2,                      //
+		"formatPhone":                    FormatPhone,                  //
+		"plusOne":                        PlusOne,                      //
+		"plusOne64":                      PlusOne64,                    //
+		"add":                            Add,                          //Add two numbers
+		"subtract":                       Subtract,                     //Subtract two numbers
+		"multiply":                       Multiply,
+		"divide":                         Divide,
+		"plusOneZeroPad":                 PlusOneZeroPad, //
+		"zeroPad":                        ZeroPad,        //
+		"zeroPad64":                      ZeroPad64,      //
+		"dashes":                         Dashes,         //
+		"fullDisplayDate":                FullDisplayDate,
+		"fullDateFormat":                 FullDateFormat, //
+		"timeFormatAmPm":                 TimeFormatAmPm,
+		"intlDateDisplay":                IntlDateDisplay, //
+		"firstInitial":                   FirstInitial,    //
+		"calcTabIndex":                   CalcTabIndex,    //
+		"isToday":                        IsToday,         //
+		"newLineToBR":                    NewLineToBR,     //
+		"timeFormat":                     TimeFormat,      //
+		"dict":                           DictHelper,      //
+		"htmlEscape":                     HTMLEscape,      //
+		"toUppercase":                    ToUppercase,     //
+		"toLowercase":                    ToLowercase,     //
+		"toTitleCase":                    ToTitleCase,
+		"int64ToTime":                    Int64ToTime, //Converts, e.g., 835 to 8:35
+		"academicYearView":               utils.AcademicYearView,
+		"prepPhone":                      PrepPhone, //Preps a phone number for use in an HTML tel tag
+		"arrayToQS":                      ArrayToQS,
+		"precisionFormatter":             PrecisionFormatter,
+		"precisionFormatterFloat64":      PrecisionFormatterFloat64,
 		"safe": func(s string) template.HTML {
 			return template.HTML(s)
 		},
