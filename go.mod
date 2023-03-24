@@ -6,8 +6,8 @@ require (
 	cloud.google.com/go/datastore v1.5.0
 	github.com/bjbigler/utils v0.0.0-20210708163946-40ea100bb483
 	github.com/shopspring/decimal v1.2.0
-	golang.org/x/net v0.0.0-20220225172249-27dd8689420f
-	golang.org/x/text v0.3.7
+	golang.org/x/net v0.8.0
+	golang.org/x/text v0.8.0
 )
 
 require (
@@ -21,11 +21,12 @@ require (
 	github.com/googleapis/gax-go/v2 v2.0.5 // indirect
 	github.com/jstemmer/go-junit-report v0.9.1 // indirect
 	go.opencensus.io v0.22.5 // indirect
+	golang.org/x/crypto v0.7.0 // indirect
 	golang.org/x/lint v0.0.0-20201208152925-83fdc39ff7b5 // indirect
-	golang.org/x/mod v0.4.1 // indirect
+	golang.org/x/mod v0.8.0 // indirect
 	golang.org/x/oauth2 v0.0.0-20210218202405-ba52d332ba99 // indirect
-	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
-	golang.org/x/tools v0.1.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
+	golang.org/x/tools v0.6.0 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/api v0.40.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
