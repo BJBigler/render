@@ -16,7 +16,7 @@ import (
 	"github.com/shopspring/decimal"
 )
 
-//Location returns New York location
+// Location returns New York location
 func location() *time.Location {
 
 	loc, err := time.LoadLocation("America/New_York")
@@ -27,53 +27,53 @@ func location() *time.Location {
 	return loc
 }
 
-//FullDateTimeET returns Eastern Time representation (2006-01-02 15:04)
+// FullDateTimeET returns Eastern Time representation (2006-01-02 15:04)
 func FullDateTimeET(val time.Time) string {
 	return val.In(location()).Format("2006-01-02 15:04")
 }
 
-//ShortDateTime returns Eastern Time representation (Jan 01 15:04)
+// ShortDateTime returns Eastern Time representation (Jan 01 15:04)
 func ShortDateTime(val time.Time) string {
 	return val.In(location()).Format("Jan 02 3:04pm")
 }
 
-//DateTimeFormal (January 2, 2006 at 3:04PM)
+// DateTimeFormal (January 2, 2006 at 3:04PM)
 func DateTimeFormal(val time.Time) string {
 	return val.In(location()).Format("January 02, 2006 at 3:04pm")
 }
 
-//TimeFormat returns AM/PM time format
+// TimeFormat returns AM/PM time format
 func TimeFormat(val time.Time) string {
 	return val.In(location()).Format("3:04pm")
 }
 
-//FullDisplayDate in NY
+// FullDisplayDate in NY
 func FullDisplayDate(val time.Time) string {
 	return FullDateFormat(val, location())
 }
 
-//FullDateFormat ...
+// FullDateFormat ...
 func FullDateFormat(val time.Time, location *time.Location) string {
 	return val.In(location).Format("Monday, January 2, 2006")
 }
 
-//TimeFormatAmPm ...
+// TimeFormatAmPm ...
 func TimeFormatAmPm(val time.Time, location *time.Location) string {
 	return val.In(location).Format("3:04pm")
 }
 
-//FormatDate ...
+// FormatDate ...
 func FormatDate(val time.Time, location *time.Location, format string) string {
 	//fmt.Println(val, location, format)
 	return val.In(location).Format(format)
 }
 
-//FormatDateUTC ...
+// FormatDateUTC ...
 func FormatDateUTC(val time.Time, format string) string {
 	return val.In(time.UTC).Format(format)
 }
 
-//DisplayDate (01/02/2006)
+// DisplayDate (01/02/2006)
 func DisplayDate(val time.Time) string {
 	minTime := time.Time{}
 
@@ -83,10 +83,10 @@ func DisplayDate(val time.Time) string {
 	return ""
 }
 
-//DisplayMorningAfternoonEvening returns
-//"Morning" when time.Hour is less than 12;
-//"Afternoon" when time.Hour is less than 18 (before 6PM)
-//"Evening" for all other times
+// DisplayMorningAfternoonEvening returns
+// "Morning" when time.Hour is less than 12;
+// "Afternoon" when time.Hour is less than 18 (before 6PM)
+// "Evening" for all other times
 func DisplayMorningAfternoonEvening(val time.Time) string {
 	hour := val.Hour()
 
@@ -101,7 +101,7 @@ func DisplayMorningAfternoonEvening(val time.Time) string {
 	return "Evening"
 }
 
-//DisplayDateTime (01/02/2006 03:04PM)
+// DisplayDateTime (01/02/2006 03:04PM)
 func DisplayDateTime(val time.Time) string {
 	minTime := time.Time{}
 
@@ -112,33 +112,33 @@ func DisplayDateTime(val time.Time) string {
 
 }
 
-//DateFormatDisplay (January 2006)
+// DateFormatDisplay (January 2006)
 func DateFormatDisplay(val time.Time) string {
 
 	return val.In(location()).Format("January 2006")
 }
 
-//DateMonth (Jan)
+// DateMonth (Jan)
 func DateMonth(val time.Time) string {
 	return val.In(location()).Format("Jan")
 }
 
-//DateDay (2)
+// DateDay (2)
 func DateDay(val time.Time) string {
 	return val.In(location()).Format("2")
 }
 
-//DateYear (2006)
+// DateYear (2006)
 func DateYear(val time.Time) string {
 	return val.In(location()).Format("2006")
 }
 
-//IntlDateDisplay (2006-01-02)
+// IntlDateDisplay (2006-01-02)
 func IntlDateDisplay(val time.Time) string {
 	return val.In(location()).Format("2006-01-02")
 }
 
-//WhenCompletedDisplay ...
+// WhenCompletedDisplay ...
 func WhenCompletedDisplay(val time.Time) string {
 	if val.IsZero() {
 		return ""
@@ -147,7 +147,7 @@ func WhenCompletedDisplay(val time.Time) string {
 	return "completed " + DateFormatDisplay(val)
 }
 
-//WhenRevisedDisplay ...
+// WhenRevisedDisplay ...
 func WhenRevisedDisplay(val time.Time) string {
 	if val.IsZero() {
 		return ""
@@ -156,9 +156,9 @@ func WhenRevisedDisplay(val time.Time) string {
 	return ", revised " + DateFormatDisplay(val)
 }
 
-//RenderSnippet utilizes GO's templating engine
-//to render a template fragment into a string using
-//*models*'s data.
+// RenderSnippet utilizes GO's templating engine
+// to render a template fragment into a string using
+// *models*'s data.
 func RenderFragment(tmpl string, model interface{}) (template.HTML, error) {
 
 	result, err := ToStringFromString(tmpl, model)
@@ -166,7 +166,7 @@ func RenderFragment(tmpl string, model interface{}) (template.HTML, error) {
 	return template.HTML(result), err
 }
 
-//IssueDateFormatDisplay ...
+// IssueDateFormatDisplay ...
 func IssueDateFormatDisplay(val time.Time) string {
 	if val.IsZero() {
 		return ""
@@ -174,13 +174,13 @@ func IssueDateFormatDisplay(val time.Time) string {
 	return DateFormatDisplay(val)
 }
 
-//Marshal ...
+// Marshal ...
 func Marshal(v interface{}) template.JS {
 	a, _ := json.Marshal(v)
 	return template.JS(a)
 }
 
-//URLSafeKey returns URL-safe representation of key.
+// URLSafeKey returns URL-safe representation of key.
 func URLSafeKey(datastoreKey *datastore.Key) string {
 	if datastoreKey == nil {
 		return ""
@@ -189,7 +189,7 @@ func URLSafeKey(datastoreKey *datastore.Key) string {
 	return datastoreKey.Encode()
 }
 
-//KeyToStringID ...
+// KeyToStringID ...
 func KeyToStringID(datastoreKey *datastore.Key) string {
 	if datastoreKey == nil {
 		return ""
@@ -198,12 +198,12 @@ func KeyToStringID(datastoreKey *datastore.Key) string {
 	return datastoreKey.String()
 }
 
-//Format2 returns a number with two decimal points
+// Format2 returns a number with two decimal points
 func Format2(d float64) string {
 	return fmt.Sprintf("%.2f", d)
 }
 
-//FormatPhone ...
+// FormatPhone ...
 func FormatPhone(n string) string {
 	if len(n) == 10 {
 		return "(" + n[0:3] + ") " + n[3:6] + "-" + n[6:10]
@@ -212,7 +212,7 @@ func FormatPhone(n string) string {
 	return n
 }
 
-//Int64Display2FromPrecision10 ...
+// Int64Display2FromPrecision10 ...
 func Int64Display2FromPrecision10(number int64) string {
 	//000012357000000 => 1.2347000000
 	dec := decimal.New(number, -10)
@@ -220,28 +220,28 @@ func Int64Display2FromPrecision10(number int64) string {
 	return utils.FormatCommas(str)
 }
 
-//Int64Display0 formats an integer with precision 4 to 0 decimals
+// Int64Display0 formats an integer with precision 4 to 0 decimals
 func Int64Display0(number int64) string {
 	dec := decimal.New(number, -4)
 	str := dec.StringFixed(0)
 	return utils.FormatCommas(str)
 }
 
-//IntDisplay0 formats an integer with precision 0
+// IntDisplay0 formats an integer with precision 0
 func IntDisplay0(number int) string {
 
 	return utils.RenderInteger("#,###.", number)
 
 }
 
-//Int64Display2 formats an integer with precision 4 to 2 decimals
+// Int64Display2 formats an integer with precision 4 to 2 decimals
 func Int64Display2(number int64) string {
 	dec := decimal.New(number, -4)
 	str := dec.StringFixed(2)
 	return utils.FormatCommas(str)
 }
 
-//Int64Display3 formats an integer with precision 4 to 3 decimals
+// Int64Display3 formats an integer with precision 4 to 3 decimals
 func Int64Display3(number int64) string {
 	dec := decimal.New(number, -4)
 	str := dec.StringFixed(3)
@@ -249,83 +249,83 @@ func Int64Display3(number int64) string {
 
 }
 
-//Float64Display0 formats a float64 with precision 4 to 3 decimals
+// Float64Display0 formats a float64 with precision 4 to 3 decimals
 func Float64Display0(number float64) string {
 	number = number / 10000
 	p := message.NewPrinter(language.English)
 	return p.Sprintf("%.0f", number)
 }
 
-//Float64Display2 formatsa float64 with precision 4 to 3 decimals
+// Float64Display2 formatsa float64 with precision 4 to 3 decimals
 func Float64Display2(number float64) string {
 	number = number / 10000
 	p := message.NewPrinter(language.English)
 	return p.Sprintf("%.2f", number)
 }
 
-//Float64Display3 formats a float64 with precision 4 to 3 decimals
+// Float64Display3 formats a float64 with precision 4 to 3 decimals
 func Float64Display3(number float64) string {
 	number = number / 10000
 	p := message.NewPrinter(language.English)
 	return p.Sprintf("%.3f", number)
 }
 
-//DecimalDisplay0 ...
+// DecimalDisplay0 ...
 func DecimalDisplay0(dec decimal.Decimal) string {
 	str := dec.StringFixed(0)
 	return utils.FormatCommas(str)
 }
 
-//DecimalDisplay2 ...
+// DecimalDisplay2 ...
 func DecimalDisplay2(dec decimal.Decimal) string {
 	str := dec.StringFixed(2)
 	return utils.FormatCommas(str)
 }
 
-//DecimalDisplay3 ...
+// DecimalDisplay3 ...
 func DecimalDisplay3(dec decimal.Decimal) string {
 	str := dec.StringFixed(3)
 	return utils.FormatCommas(str)
 }
 
-//PlusOneZeroPad adds one to the value provided and pads with a zero
+// PlusOneZeroPad adds one to the value provided and pads with a zero
 func PlusOneZeroPad(val int) string {
 	newVal := val + 1
 	return ZeroPad(newVal)
 }
 
-//PlusOne adds one to the value provided
+// PlusOne adds one to the value provided
 func PlusOne(val int) int {
 	return val + 1
 }
 
-//PlusOne64 adds one to the value provided
+// PlusOne64 adds one to the value provided
 func PlusOne64(val int64) int64 {
 	return val + 1
 }
 
-//Add ...
+// Add ...
 func Add(a, b int64) int64 {
 	return a + b
 }
 
-//Subtract ...
+// Subtract ...
 func Subtract(a, b int64) int64 {
 	return a - b
 }
 
-//Multiply ...
+// Multiply ...
 func Multiply(a, b int64) int64 {
 	return a * b
 }
 
-//Divide ...
+// Divide ...
 func Divide(a, b int64) float64 {
 	return float64(a) / float64(b)
 }
 
-//Dashes returns dashes related to the level,
-//e.g., level 1 = zero dashes, level 2 = two dashes, etc.
+// Dashes returns dashes related to the level,
+// e.g., level 1 = zero dashes, level 2 = two dashes, etc.
 func Dashes(level int) string {
 	level = level - 1
 
@@ -338,27 +338,27 @@ func Dashes(level int) string {
 	return result
 }
 
-//ZeroPad adds a zero in front of the value
+// ZeroPad adds a zero in front of the value
 func ZeroPad(val int) string {
 	return fmt.Sprintf("%02d", val)
 }
 
-//ZeroPad64 adds a zero in front of the value
+// ZeroPad64 adds a zero in front of the value
 func ZeroPad64(val int64) string {
 	return fmt.Sprintf("%02d", val)
 }
 
-//FirstInitial returns first initial of name
+// FirstInitial returns first initial of name
 func FirstInitial(name string) string {
 	return name[0:1]
 }
 
-//CalcTabIndex ...
+// CalcTabIndex ...
 func CalcTabIndex(index int, num int, base int) int {
 	return (index * base) + num
 }
 
-//IsToday ...
+// IsToday ...
 func IsToday(dte time.Time) bool {
 
 	yearNow, monthNow, dayNow := time.Now().In(location()).Date()
@@ -371,12 +371,22 @@ func IsToday(dte time.Time) bool {
 	return false
 }
 
-//NewLineToBR ...
+func InFuture(dte time.Time, loc *time.Location) bool {
+	now := time.Now().In(loc)
+	return dte.After(now)
+}
+
+func InPast(dte time.Time, loc *time.Location) bool {
+	now := time.Now().In(loc)
+	return dte.Before(now)
+}
+
+// NewLineToBR ...
 func NewLineToBR(s string) template.HTML {
 	return template.HTML(strings.Replace(s, "\n", "<br />", -1))
 }
 
-//DictHelper ...
+// DictHelper ...
 func DictHelper(values ...interface{}) (map[string]interface{}, error) {
 	if len(values)%2 != 0 {
 		return nil, errors.New("invalid dict call")
@@ -396,29 +406,29 @@ func DictHelper(values ...interface{}) (map[string]interface{}, error) {
 	return dict, nil
 }
 
-//HTMLEscape ...
+// HTMLEscape ...
 func HTMLEscape(input string) template.HTML {
 	return template.HTML(input)
 }
 
-//ToUppercase ...
+// ToUppercase ...
 func ToUppercase(v string) string {
 	return strings.ToUpper(v)
 }
 
-//ToLowercase ...
+// ToLowercase ...
 func ToLowercase(v string) string {
 	return strings.ToLower(v)
 }
 
-//ToTitleCase ...
+// ToTitleCase ...
 func ToTitleCase(v string) string {
 	return strings.Title(v)
 }
 
-//PrepPhone replaces ")", "(", "-", " "
-//to make sure it will show up in a "tel"
-//tag with proper format.
+// PrepPhone replaces ")", "(", "-", " "
+// to make sure it will show up in a "tel"
+// tag with proper format.
 func PrepPhone(v string) string {
 
 	v = strings.Replace(v, "(", "", -1)
@@ -430,8 +440,8 @@ func PrepPhone(v string) string {
 	return v
 }
 
-//Int64ToTime returns an HTML-time-formatted
-//string from an int64. Example: 835 -> 08:35
+// Int64ToTime returns an HTML-time-formatted
+// string from an int64. Example: 835 -> 08:35
 func Int64ToTime(v int64) string {
 
 	hours := fmt.Sprintf("%02d", v/100)
@@ -440,8 +450,8 @@ func Int64ToTime(v int64) string {
 
 }
 
-//ArrayToQS takes a key and string array
-//and produces &key=v&key=v, etc
+// ArrayToQS takes a key and string array
+// and produces &key=v&key=v, etc
 func ArrayToQS(key string, values []string) template.URL {
 
 	sb := strings.Builder{}
@@ -452,7 +462,7 @@ func ArrayToQS(key string, values []string) template.URL {
 	return template.URL(sb.String())
 }
 
-//PrecisionFormatter formats value to precision decimal places
+// PrecisionFormatter formats value to precision decimal places
 func PrecisionFormatter(value, precision, displayDecimals int64) string {
 	amount := float64(value) / float64(intPow(10, precision))
 	formatter := fmt.Sprintf("%%.%df", displayDecimals)

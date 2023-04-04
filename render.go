@@ -17,10 +17,10 @@ import (
 	"golang.org/x/net/context"
 )
 
-//ParseTemplateSets parses sets of files into templates, one per page needed.
-//The *baseTemplate* should be a relative path, e.g., "views/master.html"
-//In *sets*, the first string should be the template map lookup name.
-//Ex: {"authenticators", "views/master.html", "views/authenticators.html"}
+// ParseTemplateSets parses sets of files into templates, one per page needed.
+// The *baseTemplate* should be a relative path, e.g., "views/master.html"
+// In *sets*, the first string should be the template map lookup name.
+// Ex: {"authenticators", "views/master.html", "views/authenticators.html"}
 func ParseTemplateSets(baseTemplate string, sets [][]string) (templates map[string]*template.Template, err error) {
 
 	templates = make(map[string]*template.Template)
@@ -55,7 +55,7 @@ func ParseTemplateSets(baseTemplate string, sets [][]string) (templates map[stri
 	return templates, err
 }
 
-//Template renders template from the template map produced by ParseTemplateSets
+// Template renders template from the template map produced by ParseTemplateSets
 func Template(w http.ResponseWriter, templates map[string]*template.Template, model interface{}, templateIndex string) error {
 
 	template, ok := templates[templateIndex]
@@ -66,7 +66,7 @@ func Template(w http.ResponseWriter, templates map[string]*template.Template, mo
 
 }
 
-//FindAndParseTemplates parses all templates
+// FindAndParseTemplates parses all templates
 func FindAndParseTemplates() (*template.Template, error) {
 	funcMap := GetFuncMap()
 
@@ -99,8 +99,8 @@ func FindAndParseTemplates() (*template.Template, error) {
 	return root, err
 }
 
-//ToBrowser pairs master.html template to whatever instanceTemplate gets
-//passed in.
+// ToBrowser pairs master.html template to whatever instanceTemplate gets
+// passed in.
 func ToBrowser(w http.ResponseWriter, model interface{}, templates ...string) error {
 
 	templates = append([]string{"views/master.html"}, templates...)
@@ -120,13 +120,13 @@ func ToBrowser(w http.ResponseWriter, model interface{}, templates ...string) er
 	return nil
 }
 
-//RedirectTo ...
+// RedirectTo ...
 func RedirectTo(w http.ResponseWriter, redirectURL *url.URL) {
 	jsonOut := fmt.Sprintf(`{"statusCode": %v, "redirectTo":"%s" }`, 6, redirectURL.String())
 	JSONToBrowser(w, []byte(jsonOut))
 }
 
-//ToBrowserNoMaster prints out template with no master.
+// ToBrowserNoMaster prints out template with no master.
 func ToBrowserNoMaster(w http.ResponseWriter, instanceTemplate string, model interface{}) error {
 
 	funcMap := GetFuncMap()
@@ -143,7 +143,7 @@ func ToBrowserNoMaster(w http.ResponseWriter, instanceTemplate string, model int
 	return nil
 }
 
-//ToBrowserNoMasterNew ...
+// ToBrowserNoMasterNew ...
 func ToBrowserNoMasterNew(w http.ResponseWriter, model interface{}, templates ...string) error {
 	if len(templates) == 0 {
 		return fmt.Errorf("no templates supplied")
@@ -163,8 +163,8 @@ func ToBrowserNoMasterNew(w http.ResponseWriter, model interface{}, templates ..
 	return nil
 }
 
-//ToString renders the instanceTemplate alone, without any master supplied.
-//It's used for html fragments, largely in AJAX.
+// ToString renders the instanceTemplate alone, without any master supplied.
+// It's used for html fragments, largely in AJAX.
 func ToString(model interface{}, templates ...string) (string, error) {
 
 	if len(templates) == 0 {
@@ -192,7 +192,7 @@ func ToString(model interface{}, templates ...string) (string, error) {
 	return doc.String(), nil
 }
 
-//ToStringFromString renders a string HTML template
+// ToStringFromString renders a string HTML template
 func ToStringFromString(html string, model interface{}) (result string, err error) {
 	funcMap := GetFuncMap()                  //Sets up the funcMaps to be used on templates, e.g., formatters like displayDate
 	bodyTemplate := template.New("template") //Initializes named template
@@ -219,8 +219,8 @@ func ToStringFromString(html string, model interface{}) (result string, err erro
 	return b.String(), err
 }
 
-//ToHTMLOld renders a template as template.HTML to use as html fragments when compositing
-//a page together.
+// ToHTMLOld renders a template as template.HTML to use as html fragments when compositing
+// a page together.
 func ToHTMLOld(instanceTemplate string, model interface{}) (template.HTML, error) {
 
 	funcMap := GetFuncMap()
@@ -244,8 +244,8 @@ func ToHTMLOld(instanceTemplate string, model interface{}) (template.HTML, error
 	return template.HTML(doc.String()), nil
 }
 
-//ToHTML renders a template as template.HTML to use as html fragments when compositing
-//a page together.
+// ToHTML renders a template as template.HTML to use as html fragments when compositing
+// a page together.
 func ToHTML(model interface{}, templates ...string) (template.HTML, error) {
 
 	if len(templates) == 0 {
@@ -283,7 +283,7 @@ func ToHTML(model interface{}, templates ...string) (template.HTML, error) {
 	return template.HTML(doc.String()), nil
 }
 
-//JSONToBrowser sends a JSON []byte to the browser
+// JSONToBrowser sends a JSON []byte to the browser
 func JSONToBrowser(w http.ResponseWriter, json []byte) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Add("Access-Control-Allow-Credentials", "true")
@@ -294,7 +294,7 @@ func JSONToBrowser(w http.ResponseWriter, json []byte) error {
 	return err
 }
 
-//StringToBrowser takes *html* string and sends it to the browser.
+// StringToBrowser takes *html* string and sends it to the browser.
 func StringToBrowser(w http.ResponseWriter, html string) error {
 	w.Header().Set("Content-Type", "text/html")
 	w.Header().Add("Access-Control-Allow-Credentials", "true")
@@ -304,7 +304,7 @@ func StringToBrowser(w http.ResponseWriter, html string) error {
 	return err
 }
 
-//CsvToBrowser takes a [][]string and sends it to the browser as a CSV file.
+// CsvToBrowser takes a [][]string and sends it to the browser as a CSV file.
 func CsvToBrowser(w http.ResponseWriter, csvRecords [][]string, filename string) {
 	w.Header().Set("Content-Type", "text/csv")
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
@@ -317,7 +317,7 @@ func CsvToBrowser(w http.ResponseWriter, csvRecords [][]string, filename string)
 	w.Write(b.Bytes())
 }
 
-//WriteXlsToBrowser takes a string formatted as Office XML and outputs it to the browswer as a file.
+// WriteXlsToBrowser takes a string formatted as Office XML and outputs it to the browswer as a file.
 func WriteXlsToBrowser(ctx context.Context, w http.ResponseWriter, xls string, filename string) {
 	w.Header().Set("Content-Type", "application/vnd.ms-excel")
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
@@ -331,7 +331,7 @@ func WriteXlsToBrowser(ctx context.Context, w http.ResponseWriter, xls string, f
 	}
 }
 
-//WriteIcsToBrowser delivers iCalendar files to the browser
+// WriteIcsToBrowser delivers iCalendar files to the browser
 func WriteIcsToBrowser(w http.ResponseWriter, calendar string, filename string) {
 	w.Header().Set("Content-Type", "text/calendar")
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
@@ -345,9 +345,9 @@ func WriteIcsToBrowser(w http.ResponseWriter, calendar string, filename string) 
 	}
 }
 
-//PDFToBrowser streams PDF file to browser. Its main purpose
-//is security: instead of linking to the file system,
-//code calling this func requires a login.
+// PDFToBrowser streams PDF file to browser. Its main purpose
+// is security: instead of linking to the file system,
+// code calling this func requires a login.
 func PDFToBrowser(w http.ResponseWriter, path string) error {
 	streamPDFbytes, err := ioutil.ReadFile(path)
 
@@ -370,9 +370,9 @@ func PDFToBrowser(w http.ResponseWriter, path string) error {
 	return nil
 }
 
-//PDFBytesToBrowser streams PDF file to browser. Its main purpose
-//is security: instead of linking to the file system,
-//code calling this func requires a login.
+// PDFBytesToBrowser streams PDF file to browser. Its main purpose
+// is security: instead of linking to the file system,
+// code calling this func requires a login.
 func PDFBytesToBrowser(w http.ResponseWriter, fileName string, file []byte) error {
 
 	w.Header().Set("Content-type", "application/pdf")
@@ -387,7 +387,7 @@ func PDFBytesToBrowser(w http.ResponseWriter, fileName string, file []byte) erro
 	return nil
 }
 
-//GenericBytesToBrowser streams a file without setting its content type
+// GenericBytesToBrowser streams a file without setting its content type
 func GenericBytesToBrowser(w http.ResponseWriter, fileName string, file []byte) error {
 
 	// w.Header().Set("Content-type", "application/pdf")
@@ -402,7 +402,7 @@ func GenericBytesToBrowser(w http.ResponseWriter, fileName string, file []byte) 
 	return nil
 }
 
-//ReportError sends JSON message with "statusCode:0" and "error:" with the error specified
+// ReportError sends JSON message with "statusCode:0" and "error:" with the error specified
 func ReportError(w http.ResponseWriter, message interface{}) {
 	type helper struct {
 		StatusCode int    `json:"statusCode"`
@@ -418,7 +418,7 @@ func ReportError(w http.ResponseWriter, message interface{}) {
 	JSONToBrowser(w, jsonOut)
 }
 
-//ReportMessage sends JSON messagae with "statusCode:0" and "msg:" *message
+// ReportMessage sends JSON messagae with "statusCode:0" and "msg:" *message
 func ReportMessage(w http.ResponseWriter, message string) {
 
 	type helper struct {
@@ -436,9 +436,9 @@ func ReportMessage(w http.ResponseWriter, message string) {
 
 }
 
-//ReportRedirect sends JSON message with "statusCode" of 1 "redirect" equal to the *redirect*
-//provided. If  *redirectID* is also provided, the javascript will
-//attempt to scroll into view any found element with that ID.
+// ReportRedirect sends JSON message with "statusCode" of 1 "redirect" equal to the *redirect*
+// provided. If  *redirectID* is also provided, the javascript will
+// attempt to scroll into view any found element with that ID.
 func ReportRedirect(w http.ResponseWriter, redirect string) {
 	type helper struct {
 		StatusCode int    `json:"statusCode"`
@@ -454,27 +454,27 @@ func ReportRedirect(w http.ResponseWriter, redirect string) {
 	JSONToBrowser(w, jsonOut)
 }
 
-//ReportErrors sends JSON message with "statusCode:0" and the errors specified
+// ReportErrors sends JSON message with "statusCode:0" and the errors specified
 func ReportErrors(w http.ResponseWriter, errors []error) {
 	errorsJSON, _ := json.Marshal(errors)
 	jsonOut := fmt.Sprintf(`{"statusCode": %v, "errors":%v }`, 0, string(errorsJSON))
 	JSONToBrowser(w, []byte(jsonOut))
 }
 
-//ReportSuccess sends JSON message with "statusCode:1"
+// ReportSuccess sends JSON message with "statusCode:1"
 func ReportSuccess(w http.ResponseWriter) {
 	jsonOut := fmt.Sprintf(`{"statusCode": %v }`, 1)
 	JSONToBrowser(w, []byte(jsonOut))
 }
 
-//ReportReload sends JSON message with "statusCode:5", which doGetFetch/doPostFetch
-//interpret as a reload
+// ReportReload sends JSON message with "statusCode:5", which doGetFetch/doPostFetch
+// interpret as a reload
 func ReportReload(w http.ResponseWriter) {
 	jsonOut := fmt.Sprintf(`{"statusCode": %v }`, 5)
 	JSONToBrowser(w, []byte(jsonOut))
 }
 
-//GetFuncMap provides a set of utility functions to help format data on an HTML output page.
+// GetFuncMap provides a set of utility functions to help format data on an HTML output page.
 func GetFuncMap() map[string]interface{} {
 	return template.FuncMap{
 		"formatDate":                     FormatDate,
@@ -526,12 +526,14 @@ func GetFuncMap() map[string]interface{} {
 		"firstInitial":                   FirstInitial,    //
 		"calcTabIndex":                   CalcTabIndex,    //
 		"isToday":                        IsToday,         //
-		"newLineToBR":                    NewLineToBR,     //
-		"timeFormat":                     TimeFormat,      //
-		"dict":                           DictHelper,      //
-		"htmlEscape":                     HTMLEscape,      //
-		"toUppercase":                    ToUppercase,     //
-		"toLowercase":                    ToLowercase,     //
+		"inFuture":                       InFuture,
+		"inPast":                         InPast,
+		"newLineToBR":                    NewLineToBR, //
+		"timeFormat":                     TimeFormat,  //
+		"dict":                           DictHelper,  //
+		"htmlEscape":                     HTMLEscape,  //
+		"toUppercase":                    ToUppercase, //
+		"toLowercase":                    ToLowercase, //
 		"toTitleCase":                    ToTitleCase,
 		"int64ToTime":                    Int64ToTime, //Converts, e.g., 835 to 8:35
 		"academicYearView":               utils.AcademicYearView,

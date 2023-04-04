@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	cloud.google.com/go/datastore v1.5.0
-	github.com/bjbigler/utils v0.0.0-20210708163946-40ea100bb483
+	github.com/bjbigler/utils v0.0.0-20230319025826-96385c4e8c42
 	github.com/shopspring/decimal v1.2.0
 	golang.org/x/net v0.8.0
 	golang.org/x/text v0.8.0
