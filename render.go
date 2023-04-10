@@ -331,16 +331,13 @@ func WriteXlsToBrowser(ctx context.Context, w http.ResponseWriter, xls string, f
 	}
 }
 
-// WriteXlsToBrowser takes a string formatted as Office XML and outputs it to the browswer as a file.
-func XlsxToBrowser(w http.ResponseWriter, filename string, file []byte) {
+func XlsxToBrowser(ctx context.Context, w http.ResponseWriter, filename string, file *bytes.Buffer) {
 	w.Header().Set("Content-Type", "application/octect-stream")
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
 	w.Header().Set("Content-Transfer-Encoding", "binary")
 	w.Header().Add("Access-Control-Allow-Credentials", "true")
 
-	b := bytes.NewBuffer(file)
-
-	if _, err := b.WriteTo(w); err != nil {
+	if _, err := file.WriteTo(w); err != nil {
 		output := fmt.Sprintf("%v", err)
 		fmt.Fprint(w, output)
 	}
