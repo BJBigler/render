@@ -3,32 +3,34 @@ module github.com/bjbigler/render
 go 1.20
 
 require (
-	cloud.google.com/go/datastore v1.5.0
+	cloud.google.com/go/datastore v1.11.0
 	github.com/bjbigler/utils v0.0.0-20230319025826-96385c4e8c42
-	github.com/shopspring/decimal v1.2.0
+	github.com/shopspring/decimal v1.3.1
 	golang.org/x/net v0.9.0
 	golang.org/x/text v0.9.0
 )
 
 require (
-	cloud.google.com/go v0.75.0 // indirect
-	github.com/PuerkitoBio/goquery v1.6.1 // indirect
-	github.com/andybalholm/cascadia v1.1.0 // indirect
-	github.com/araddon/dateparse v0.0.0-20210207001429-0eec95c9db7e // indirect
-	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
-	github.com/golang/protobuf v1.5.0 // indirect
-	github.com/google/go-cmp v0.5.5 // indirect
-	github.com/googleapis/gax-go/v2 v2.0.5 // indirect
-	github.com/jstemmer/go-junit-report v0.9.1 // indirect
-	go.opencensus.io v0.22.5 // indirect
-	golang.org/x/lint v0.0.0-20201208152925-83fdc39ff7b5 // indirect
-	golang.org/x/mod v0.8.0 // indirect
-	golang.org/x/oauth2 v0.0.0-20210218202405-ba52d332ba99 // indirect
+	cloud.google.com/go v0.110.0 // indirect
+	cloud.google.com/go/compute v1.19.1 // indirect
+	cloud.google.com/go/compute/metadata v0.2.3 // indirect
+	github.com/PuerkitoBio/goquery v1.8.1 // indirect
+	github.com/andybalholm/cascadia v1.3.2 // indirect
+	github.com/araddon/dateparse v0.0.0-20210429162001-6b43995a97de // indirect
+	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/google/go-cmp v0.5.9 // indirect
+	github.com/google/s2a-go v0.1.2 // indirect
+	github.com/googleapis/enterprise-certificate-proxy v0.2.3 // indirect
+	github.com/googleapis/gax-go/v2 v2.8.0 // indirect
+	go.opencensus.io v0.24.0 // indirect
+	golang.org/x/crypto v0.8.0 // indirect
+	golang.org/x/oauth2 v0.7.0 // indirect
 	golang.org/x/sys v0.7.0 // indirect
-	golang.org/x/tools v0.6.0 // indirect
-	google.golang.org/api v0.40.0 // indirect
+	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
+	google.golang.org/api v0.119.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20210226172003-ab064af71705 // indirect
-	google.golang.org/grpc v1.35.0 // indirect
+	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
+	google.golang.org/grpc v1.54.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 )
