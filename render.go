@@ -488,6 +488,7 @@ func ReportJSON(w http.ResponseWriter, results interface{}) error {
 		return err
 	}
 
+	fmt.Println("Rendered JSON", results, string(jsonOut))
 	return JSONToBrowser(w, jsonOut)
 }
 
