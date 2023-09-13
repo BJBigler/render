@@ -479,6 +479,16 @@ func ReportSuccess(w http.ResponseWriter) {
 	JSONToBrowser(w, []byte(jsonOut))
 }
 
+// ReportSuccess sends JSON message with "statusCode:1"
+func ReportJSON(w http.ResponseWriter, results interface{}) error {
+
+	jsonOut, err := json.Marshal(results)
+	if err != nil {
+		return err
+	}
+	return JSONToBrowser(w, []byte(jsonOut))
+}
+
 // ReportReload sends JSON message with "statusCode:5", which doGetFetch/doPostFetch
 // interpret as a reload
 func ReportReload(w http.ResponseWriter) {
