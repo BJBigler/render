@@ -487,7 +487,8 @@ func ReportJSON(w http.ResponseWriter, results interface{}) error {
 	if err != nil {
 		return err
 	}
-	return JSONToBrowser(w, []byte(jsonOut))
+
+	return JSONToBrowser(w, jsonOut)
 }
 
 // ReportReload sends JSON message with "statusCode:5", which doGetFetch/doPostFetch
