@@ -481,15 +481,16 @@ func ReportSuccess(w http.ResponseWriter) {
 
 // ReportJSON json.Marshals *results* and returns an error if that fails.
 // If no failure, it sends that JSON to the browser.
-func ReportJSON(w http.ResponseWriter, results interface{}) error {
+func ReportJSON(w http.ResponseWriter, results interface{}) {
 
 	jsonOut, err := json.Marshal(results)
 	if err != nil {
-		return err
+		return
 	}
 
 	fmt.Println("Rendered JSON", results, string(jsonOut))
-	return JSONToBrowser(w, jsonOut)
+	JSONToBrowser(w, jsonOut)
+
 }
 
 // ReportReload sends JSON message with "statusCode:5", which doGetFetch/doPostFetch
