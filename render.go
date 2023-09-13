@@ -479,7 +479,8 @@ func ReportSuccess(w http.ResponseWriter) {
 	JSONToBrowser(w, []byte(jsonOut))
 }
 
-// ReportSuccess sends JSON message with "statusCode:1"
+// ReportJSON json.Marshals *results* and returns an error if that fails.
+// If no failure, it sends that JSON to the browser.
 func ReportJSON(w http.ResponseWriter, results interface{}) error {
 
 	jsonOut, err := json.Marshal(results)
