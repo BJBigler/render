@@ -219,6 +219,33 @@ func ToStringFromString(html string, model interface{}) (result string, err erro
 	return b.String(), err
 }
 
+// ToBytesFromString renders a string HTML template
+func ToBytesFromString(html string, model interface{}) (result []byte, err error) {
+	funcMap := GetFuncMap()                  //Sets up the funcMaps to be used on templates, e.g., formatters like displayDate
+	bodyTemplate := template.New("template") //Initializes named template
+	funcs := bodyTemplate.Funcs(funcMap)     //associates the funcMap with the template
+
+	parsed, err := funcs.Parse(html) //Parses the template
+
+	if err != nil {
+		return nil, err
+	}
+
+	t := template.Must(parsed, err) //Creates template
+	if err != nil {
+		return nil, err
+	}
+
+	var b *bytes.Buffer
+
+	err = t.Execute(b, model) //Executes
+	if err != nil {
+		return nil, err
+	}
+
+	return b.Bytes(), err
+}
+
 // ToHTMLOld renders a template as template.HTML to use as html fragments when compositing
 // a page together.
 func ToHTMLOld(instanceTemplate string, model interface{}) (template.HTML, error) {
@@ -300,6 +327,16 @@ func StringToBrowser(w http.ResponseWriter, html string) error {
 	w.Header().Add("Access-Control-Allow-Credentials", "true")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	_, err := w.Write([]byte(html))
+
+	return err
+}
+
+// StringToBrowser takes *html* string and sends it to the browser.
+func BytesToBrowser(w http.ResponseWriter, html []byte) error {
+	w.Header().Set("Content-Type", "text/html")
+	w.Header().Add("Access-Control-Allow-Credentials", "true")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	_, err := w.Write(html)
 
 	return err
 }
@@ -405,6 +442,21 @@ func GenericBytesToBrowser(w http.ResponseWriter, fileName string, file []byte) 
 	// w.Header().Set("Content-type", "application/pdf")
 	// w.Header().Set("Content-Disposition", "inline;filename="+fileName)
 	// w.Header().Add("Access-Control-Allow-Credentials", "true")
+
+	b := bytes.NewBuffer(file)
+	if _, err := b.WriteTo(w); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// GenericBytesToBrowser streams a file without setting its content type
+func ContentTypeToBrowser(w http.ResponseWriter, file []byte, fileName, contentType string) error {
+
+	w.Header().Set("Content-type", contentType)
+	w.Header().Set("Content-Disposition", "inline;filename="+fileName)
+	w.Header().Add("Access-Control-Allow-Credentials", "true")
 
 	b := bytes.NewBuffer(file)
 	if _, err := b.WriteTo(w); err != nil {
