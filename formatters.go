@@ -383,7 +383,7 @@ func InPast(dte time.Time, loc *time.Location) bool {
 
 // NewLineToBR ...
 func NewLineToBR(s string) template.HTML {
-	return template.HTML(strings.Replace(s, "\n", "<br />", -1))
+	return template.HTML(strings.Replace(s, "\n", "<br>", -1))
 }
 
 // DictHelper ...
