@@ -80,7 +80,7 @@ func FindAndParseTemplates() (*template.Template, error) {
 				return e1
 			}
 
-			b, e2 := ioutil.ReadFile(path)
+			b, e2 := os.ReadFile(path)
 			if e2 != nil {
 				return e2
 			}
