@@ -61,36 +61,38 @@ func ParseTemplateSets(baseTemplate string, sets [][]string) (templates map[stri
 // In a change to ParseTemplateSets, more than one base template can be added.
 // In *sets*, the first string should be the template map lookup name.
 // Ex: {"authenticators", "views/master.html", "views/authenticators.html"}
-func ParseTemplates(sets [][]string, baseTemplate ...string) (templates map[string]*template.Template, err error) {
+func ParseTemplates(sets [][]string, baseTemplates ...string) (templates map[string]*template.Template, err error) {
 
-	templates = make(map[string]*template.Template)
+	templates = make(map[string]*template.Template, len(sets))
 
 	funcMap := GetFuncMap()
 
 	for _, set := range sets {
 
+		if len(set) == 0 {
+			continue // Skip empty sets
+		}
+
 		templateName := utils.GenerateRandomAlphaNumeric(10)
 
 		t := template.New(templateName).Funcs(funcMap)
 
-		templateSet := baseTemplate
+		lookupName := set[0]
+		templateFiles := append(baseTemplates, set[1:]...)
 
-		remainingTemplates := set[1:]
-		templateSet = append(templateSet, remainingTemplates...)
-
-		_, err = t.ParseFiles(templateSet...)
+		_, err = t.ParseFiles(templateFiles...)
 
 		if err != nil {
 			return nil, err
 		}
 
 		//put the template in map using the lookup name
-		lookupName := set[0]
+
 		templates[lookupName] = t
 
 	}
 
-	return templates, err
+	return templates, nil
 }
 
 // Template renders template from the template map produced by ParseTemplateSets
