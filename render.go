@@ -55,6 +55,41 @@ func ParseTemplateSets(baseTemplate string, sets [][]string) (templates map[stri
 	return templates, err
 }
 
+// ParseTemplate parses sets of files into templates, one per page needed.
+// The *baseTemplate* should be a relative path, e.g., "views/master.html".
+// More than one base template can be added.
+// In *sets*, the first string should be the template map lookup name.
+// Ex: {"authenticators", "views/master.html", "views/authenticators.html"}
+func ParseTemplates(sets [][]string, baseTemplate ...string) (templates map[string]*template.Template, err error) {
+
+	templates = make(map[string]*template.Template)
+
+	funcMap := GetFuncMap()
+
+	templateName := utils.GenerateRandomAlphaNumeric(10)
+
+	for _, set := range sets {
+
+		t := template.New(templateName).Funcs(funcMap)
+
+		templateSet := baseTemplate
+		templateSet = append(templateSet, set[1:]...)
+
+		_, err = t.ParseFiles(templateSet...)
+
+		if err != nil {
+			return nil, err
+		}
+
+		//put the template in map using the lookup name
+		lookupName := set[0]
+		templates[lookupName] = t
+
+	}
+
+	return templates, err
+}
+
 // Template renders template from the template map produced by ParseTemplateSets
 func Template(w http.ResponseWriter, templates map[string]*template.Template, model interface{}, templateIndex string) error {
 
