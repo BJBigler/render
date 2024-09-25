@@ -55,9 +55,10 @@ func ParseTemplateSets(baseTemplate string, sets [][]string) (templates map[stri
 	return templates, err
 }
 
-// ParseTemplate parses sets of files into templates, one per page needed.
+// ParseTemplates parses sets of files into templates, one per page needed,
+// similar to ParseTemplateSets.
 // The *baseTemplate* should be a relative path, e.g., "views/master.html".
-// More than one base template can be added.
+// In a change to ParseTemplateSets, more than one base template can be added.
 // In *sets*, the first string should be the template map lookup name.
 // Ex: {"authenticators", "views/master.html", "views/authenticators.html"}
 func ParseTemplates(sets [][]string, baseTemplate ...string) (templates map[string]*template.Template, err error) {
