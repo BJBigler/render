@@ -67,14 +67,16 @@ func ParseTemplates(sets [][]string, baseTemplate ...string) (templates map[stri
 
 	funcMap := GetFuncMap()
 
-	templateName := utils.GenerateRandomAlphaNumeric(10)
-
 	for _, set := range sets {
+
+		templateName := utils.GenerateRandomAlphaNumeric(10)
 
 		t := template.New(templateName).Funcs(funcMap)
 
 		templateSet := baseTemplate
-		templateSet = append(templateSet, set[1:]...)
+
+		remainingTemplates := set[1:]
+		templateSet = append(templateSet, remainingTemplates...)
 
 		_, err = t.ParseFiles(templateSet...)
 
