@@ -13,6 +13,7 @@ import (
 
 	"cloud.google.com/go/datastore"
 	"github.com/bjbigler/utils"
+	"github.com/goodsign/monday"
 	"github.com/shopspring/decimal"
 )
 
@@ -66,6 +67,18 @@ func TimeFormatAmPm(val time.Time, location *time.Location) string {
 func FormatDate(val time.Time, location *time.Location, format string) string {
 	//fmt.Println(val, location, format)
 	return val.In(location).Format(format)
+}
+
+// FormatDate ...
+func FormatDateLanguage(val time.Time, location *time.Location, format, language string) string {
+
+	locale := monday.Locale(language)
+	if locale == "" {
+		return ""
+	}
+
+	return monday.Format(val.In(location), format, locale)
+
 }
 
 // FormatDateUTC ...

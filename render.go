@@ -596,6 +596,7 @@ func ReportReload(w http.ResponseWriter) {
 func GetFuncMap() map[string]interface{} {
 	return template.FuncMap{
 		"formatDate":                     FormatDate,
+		"formatDateLanguage":             FormatDateLanguage,
 		"formatDateUTC":                  FormatDateUTC,
 		"displayDate":                    DisplayDate,
 		"displayMorningAfternoonEvening": DisplayMorningAfternoonEvening, //
