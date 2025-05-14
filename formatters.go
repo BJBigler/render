@@ -15,6 +15,8 @@ import (
 	"github.com/bjbigler/utils"
 	"github.com/goodsign/monday"
 	"github.com/shopspring/decimal"
+
+	"golang.org/x/exp/constraints"
 )
 
 // Location returns New York location
@@ -467,7 +469,7 @@ func Int64ToTime(v int64) string {
 // For example, you may want to print "1 car" or "2 cars" depending on
 // how many cars you have. The function takes the number, then "car" and "cars".
 // It evaluates the number and returns "car" if it is one, otherwise "cars"
-func Pluralize(count int64, oneItem, otherItems string) string {
+func Pluralize[T constraints.Integer](count T, oneItem, otherItems string) string {
 	if count == 1 {
 		return oneItem
 	}
