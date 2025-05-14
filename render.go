@@ -660,6 +660,7 @@ func GetFuncMap() map[string]interface{} {
 		"arrayToQS":                      ArrayToQS,
 		"precisionFormatter":             PrecisionFormatter,
 		"precisionFormatterFloat64":      PrecisionFormatterFloat64,
+		"pluralize":                      Pluralize,
 		"safe": func(s string) template.HTML {
 			return template.HTML(s)
 		},

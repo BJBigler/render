@@ -463,6 +463,18 @@ func Int64ToTime(v int64) string {
 
 }
 
+// Pluralize serves to provide correct plural words when given a count.
+// For example, you may want to print "1 car" or "2 cars" depending on
+// how many cars you have. The function takes the number, then "car" and "cars".
+// It evaluates the number and returns "car" if it is one, otherwise "cars"
+func Pluralize(count int64, oneItem, otherItems string) string {
+	if count == 1 {
+		return oneItem
+	}
+
+	return otherItems
+}
+
 // ArrayToQS takes a key and string array
 // and produces &key=v&key=v, etc
 func ArrayToQS(key string, values []string) template.URL {
