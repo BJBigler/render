@@ -594,6 +594,10 @@ func ReportReload(w http.ResponseWriter) {
 
 // GetFuncMap provides a set of utility functions to help format data on an HTML output page.
 func GetFuncMap() map[string]interface{} {
+
+	var pluralizeInt = Pluralize[int]
+	var pluralizeInt64 = Pluralize[int64]
+
 	return template.FuncMap{
 		"formatDate":                     FormatDate,
 		"formatDateLanguage":             FormatDateLanguage,
@@ -660,7 +664,8 @@ func GetFuncMap() map[string]interface{} {
 		"arrayToQS":                      ArrayToQS,
 		"precisionFormatter":             PrecisionFormatter,
 		"precisionFormatterFloat64":      PrecisionFormatterFloat64,
-		"pluralize":                      Pluralize,
+		"pluralize":                      pluralizeInt,
+		"pluralizeInt64":                 pluralizeInt64,
 		"safe": func(s string) template.HTML {
 			return template.HTML(s)
 		},
